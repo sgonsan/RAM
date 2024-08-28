@@ -1,0 +1,90 @@
+/*
+This is a sample program for the assembly language
+The program reads an integer from the user and performs
+some arithmetic operations on it and then outputs the results
+
+The program uses the following instructions:
+- load
+- read
+- write
+- add
+- sub
+- mul
+- div
+- jzero
+- halt
+
+The program uses the following data types:
+- .string
+- .int
+- .float
+- .double
+
+This program is written by Sergio Gonzalez
+*/
+
+.data // data section
+
+welcome: .string "Welcome to the arithmetic program."
+end_program: .string "End of the program."
+get_input: .string "Enter a number: "
+get_add: .string "10 + "
+get_sub: .string "20 - "
+get_mul: .string "30 * "
+get_div: .string "40 / "
+equals: .string " = "
+
+operator_add: .int 10
+operator_sub: .int 20
+operator_mul: .int 30
+operator_div: .int 40
+
+.code // code section
+
+write welcome
+write ENDL
+
+load 0 operator_add
+load 1 operator_sub
+load 2 operator_mul
+load 3 operator_div
+
+write get_input
+read 8              // R[8] = input
+// jzero 8 end      // if M[4] == 0 goto end
+
+add 4 0 8           // R[4] = R[0] + R[8]
+sub 5 1 8           // R[5] = R[1] - R[8]
+mul 6 2 8           // R[6] = R[2] * R[8]
+div 7 3 8           // R[7] = R[3] / R[8]
+
+write get_add
+write 8
+write equals
+write 4
+write ENDL
+
+write get_sub
+write 8
+write equals
+write 5
+write ENDL
+
+// halt
+
+write get_mul
+write 8
+write equals
+write 6
+write ENDL
+
+write get_div
+write 8
+write equals
+write 7
+write ENDL
+
+write end_program
+write ENDL
+
+end:

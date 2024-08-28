@@ -1,0 +1,406 @@
+\doxysection{RAM.\+cpp}
+\hypertarget{RAM_8cpp_source}{}\label{RAM_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}RAM.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00007\ \mbox{\hyperlink{classRAM_a25289e9f70eb7de231f869a6032f179b}{RAM::RAM}}()\ \{}
+\DoxyCodeLine{00008\ \ \ \textcolor{comment}{//\ Initialize\ program\ counter\ to\ 0s}}
+\DoxyCodeLine{00009\ \ \ pc\_\ =\ 0;}
+\DoxyCodeLine{00010\ \ \ \textcolor{comment}{//\ Initialize\ halted\ to\ false}}
+\DoxyCodeLine{00011\ \ \ halted\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \textcolor{comment}{//\ Initialize\ number\ of\ registers\ to\ 32}}
+\DoxyCodeLine{00013\ \ \ numRegisters\_\ =\ 32;}
+\DoxyCodeLine{00014\ \ \ \textcolor{comment}{//\ Initialize\ number\ of\ memory\ cells\ to\ 1024}}
+\DoxyCodeLine{00015\ \ \ numMemory\_\ =\ 1024;}
+\DoxyCodeLine{00016\ \ \ \textcolor{comment}{//\ Initialize\ number\ of\ string\ memory\ cells\ to\ 64}}
+\DoxyCodeLine{00017\ \ \ numStringMemory\_\ =\ 64;}
+\DoxyCodeLine{00018\ \ \ \textcolor{comment}{//\ Initialize\ registers\ with\ 32\ cells\ with\ 0s}}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{classRAM_a52bacd83ccd27c1979fd51a7a6d89f7c}{setNumRegisters}}(numRegisters\_);}
+\DoxyCodeLine{00020\ \ \ \textcolor{comment}{//\ Initialize\ memory\ with\ 1024\ cells\ with\ 0s}}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classRAM_a267e3e85da00efc24007ec5549d6f505}{setNumMemory}}(numMemory\_);}
+\DoxyCodeLine{00022\ \ \ \textcolor{comment}{//\ Initialize\ string\ memory\ with\ 64\ cells\ with\ "{}"{}}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classRAM_a503109fa4a21e4b61ae1336413095b00}{setNumStringMemory}}(numStringMemory\_);}
+\DoxyCodeLine{00024\ \ \ \textcolor{comment}{//\ Initialize\ program\ with\ 1000\ cells\ all\ set\ to\ nullptr}}
+\DoxyCodeLine{00025\ \ \ program\_.resize(1000);}
+\DoxyCodeLine{00026\ \ \ \textcolor{comment}{//\ Initialize\ halted\ to\ false}}
+\DoxyCodeLine{00027\ \ \ halted\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00028\ \ \ \textcolor{comment}{//\ Initialize\ executable\ to\ false}}
+\DoxyCodeLine{00029\ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_ab4cdb646943acb580a64912a55f86b4a}{RAM::reset}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!isReset\_)\ reset\_();}
+\DoxyCodeLine{00038\ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Reset\ machine"{}});}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ RAM::reset\_(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00046\ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Resetting\ machine..."{}}\ <<\ endl;}
+\DoxyCodeLine{00047\ \ \ pc\_\ =\ 0;}
+\DoxyCodeLine{00048\ \ \ reset\_(registers\_);}
+\DoxyCodeLine{00049\ \ \ memory\_.clear();}
+\DoxyCodeLine{00050\ \ \ stringMemory\_.clear();}
+\DoxyCodeLine{00051\ \ \ labels\_.clear();}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classInstruction}{Instruction}}\ *instruction\ :\ program\_)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{keyword}{delete}\ instruction;}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Error\ deleting\ instructions:\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ \ \ program\_.resize(1000);}
+\DoxyCodeLine{00060\ \ \ halted\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00061\ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00062\ \ \ isReset\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00063\ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Machine\ reset"{}}\ <<\ endl;}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_ae6ed83904490e4dccbe7d58bda5d2978}{RAM::loadProgram}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&filename)\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (!isReset\_)\ reset\_();}
+\DoxyCodeLine{00073\ \ \ ifstream\ file(filename);}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ executable\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.is\_open())\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ program\_.clear();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ line;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ data\ =\ \textcolor{keyword}{false},\ comment\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ memory\_ptr\ =\ 0,\ stringMemory\_ptr\ =\ 0;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(file,\ line))\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}/*"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ comment\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}*/"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ comment\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!comment)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[0]\ !=\ \textcolor{charliteral}{'/'}\ \&\&\ line[1]\ !=\ \textcolor{charliteral}{'/'})\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}/*"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comment\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}*/"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ comment\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.data"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.code"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{charliteral}{':'})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!data)}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ labels\_[line.substr(0,\ line.find(\textcolor{charliteral}{':'}))]\ =}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pair<unsigned,\ bool>(program\_.size(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ createData\_(line,\ memory\_ptr,\ stringMemory\_ptr);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Error\ creating\ data:\ "{}}\ +}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}(e.what()));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!data)\ createInstruction\_(line);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Error\ creating\ instruction:\ "{}}\ +}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}(e.what()));}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (comment)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}The\ program\ has\ an\ unclosed\ comment"{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (program\_.empty())\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}No\ instructions\ found\ in\ file:\ "{}}\ +\ filename);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Program\ \(\backslash\)"{}"{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ loaded\ successfully"{}}\ <<\ endl;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Load\ program:\ "{}}\ +\ filename\ +\ \textcolor{stringliteral}{"{}\ (success)"{}});}
+\DoxyCodeLine{00147\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ executable\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Error\ opening\ file:\ "{}}\ +\ filename);}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Error\ loading\ program:\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00153\ \ \ \ \ file.close();}
+\DoxyCodeLine{00154\ \ \ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Load\ program:\ "{}}\ +\ filename\ +\ \textcolor{stringliteral}{"{}\ (error)"{}});}
+\DoxyCodeLine{00155\ \ \ \}}
+\DoxyCodeLine{00156\ \ \ isReset\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00157\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a978fe9aeee6e803acd4a6f23b76781ca}{RAM::executeProgram}}()\ \{}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordflow}{if}\ (!executable\_)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Program\ is\ not\ executable\ or\ not\ loaded"{}}\ <<\ endl;}
+\DoxyCodeLine{00167\ \ \ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Execute\ program\ (error)"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00169\ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ pc\_\ =\ 0;}
+\DoxyCodeLine{00172\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Program\ execution\ start\ here\ -\/-\/-\/"{}}\ <<\ endl;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{while}\ (!halted\_\ \&\&\ pc\_\ <\ program\_.size())\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ program\_[pc\_]-\/>execute(memory\_,\ stringMemory\_,\ registers\_,\ pc\_,\ halted\_,}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ labels\_,\ cout);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ ++pc\_;}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (halted\_)\ cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ HALTED\ -\/-\/-\/"{}}\ <<\ endl;}
+\DoxyCodeLine{00179\ \ \ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Execute\ program\ (success)"{}});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \}\ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ exception\ \&e)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Error\ executing\ program:\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00183\ \ \ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Execute\ program\ (error)"{}});}
+\DoxyCodeLine{00184\ \ \ \}}
+\DoxyCodeLine{00185\ \ \ cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Program\ execution\ finish\ here\ -\/-\/-\/"{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{void}\ RAM::createInstruction\_(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&line)\ \{}
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00196\ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}halt"{}})\ !=\ string::npos)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classHalt}{Halt}}(line));}
+\DoxyCodeLine{00199\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}add"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}add"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classAdd}{Add}}(line));}
+\DoxyCodeLine{00201\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}sub"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}sub"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classSub}{Sub}}(line));}
+\DoxyCodeLine{00203\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}mul"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}mul"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classMul}{Mul}}(line));}
+\DoxyCodeLine{00205\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}div"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}div"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classDiv}{Div}}(line));}
+\DoxyCodeLine{00207\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}load"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}load"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classLoad}{Load}}(line));}
+\DoxyCodeLine{00209\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}store"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}store"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classStore}{Store}}(line));}
+\DoxyCodeLine{00211\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}read"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}read"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classRead}{Read}}(line));}
+\DoxyCodeLine{00213\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}write"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}write"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classWrite}{Write}}(line));}
+\DoxyCodeLine{00215\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}jump"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}jump"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classJump}{Jump}}(line));}
+\DoxyCodeLine{00217\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}jzero"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}jzero"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classJzero}{Jzero}}(line));}
+\DoxyCodeLine{00219\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}jgtz"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}jgtz"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classJgtz}{Jgtz}}(line));}
+\DoxyCodeLine{00221\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}jltz"{}})\ !=\ string::npos\ \&\&\ line.find(\textcolor{stringliteral}{"{}jltz"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ program\_.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{classJltz}{Jltz}}(line));}
+\DoxyCodeLine{00223\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ instruction:\ "{}}\ +\ line);}
+\DoxyCodeLine{00225\ \ \ \}}
+\DoxyCodeLine{00226\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00233\ \textcolor{keywordtype}{void}\ RAM::createData\_(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&line,\ \textcolor{keywordtype}{unsigned}\ \&memory\_ptr,}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \&stringMemory\_ptr)\ \{}
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordflow}{if}\ (line.empty())\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00237\ \ \ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.string"{}})\ !=\ string::npos)\ \{\ \ \textcolor{comment}{//\ tag:\ .string\ "{}string"{}}}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordflow}{if}\ (stringMemory\_ptr\ >=\ numStringMemory\_)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}String\ memory\ limit\ exceeded"{}});}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ stringMemory\_.push\_back(}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ line.substr(line.find(\textcolor{charliteral}{'"{}'})\ +\ 1,\ line.rfind(\textcolor{charliteral}{'"{}'})\ -\/\ line.find(\textcolor{charliteral}{'"{}'})\ -\/\ 1));}
+\DoxyCodeLine{00245\ \ \ \ \ labels\_[line.substr(0,\ line.find(\textcolor{charliteral}{':'}))]\ =}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ pair<unsigned,\ bool>(stringMemory\_ptr,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00247\ \ \ \ \ stringMemory\_ptr++;}
+\DoxyCodeLine{00248\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.int"{}})\ !=\ string::npos)\ \{\ \ \textcolor{comment}{//\ tag:\ .int\ 123}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_ptr\ >=\ numMemory\_)\ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Memory\ limit\ exceeded"{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ memory\_.push\_back(stoi(line.substr(line.find(\textcolor{charliteral}{'.'})\ +\ 5)));}
+\DoxyCodeLine{00253\ \ \ \ \ labels\_[line.substr(0,\ line.find(\textcolor{charliteral}{':'}))]\ =}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ pair<unsigned,\ bool>(memory\_ptr,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00255\ \ \ \ \ memory\_ptr++;}
+\DoxyCodeLine{00256\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.float"{}})\ !=\ string::npos)\ \{\ \ \textcolor{comment}{//\ tag:\ .float\ 123.45}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_ptr\ >=\ numMemory\_)\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Memory\ limit\ exceeded"{}});}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ memory\_.push\_back(stof(line.substr(line.find(\textcolor{charliteral}{'.'})\ +\ 7)));}
+\DoxyCodeLine{00261\ \ \ \ \ labels\_[line.substr(0,\ line.find(\textcolor{charliteral}{':'}))]\ =}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ pair<unsigned,\ bool>(memory\_ptr,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00263\ \ \ \ \ memory\_ptr++;}
+\DoxyCodeLine{00264\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (line.find(\textcolor{stringliteral}{"{}.double"{}})\ !=\ string::npos)\ \{\ \ \textcolor{comment}{//\ tag:\ .double\ 123.45}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_ptr\ >=\ numMemory\_)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Memory\ limit\ exceeded"{}});}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ memory\_.push\_back(stod(line.substr(line.find(\textcolor{charliteral}{'.'})\ +\ 8)));}
+\DoxyCodeLine{00269\ \ \ \ \ labels\_[line.substr(0,\ line.find(\textcolor{charliteral}{':'}))]\ =}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ pair<unsigned,\ bool>(memory\_ptr,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00271\ \ \ \ \ memory\_ptr++;}
+\DoxyCodeLine{00272\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ data\ type:\ "{}}\ +\ line);}
+\DoxyCodeLine{00274\ \ \ \}}
+\DoxyCodeLine{00275\ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00283\ \textcolor{keywordtype}{bool}\ RAM::allZero\_(\textcolor{keyword}{const}\ vector<double>\ \&vec)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00284\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{double}\ i\ :\ vec)\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ -\/1e-\/6\ ||\ i\ >\ 1e-\/6)\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00298\ \textcolor{keywordtype}{bool}\ RAM::allZero\_(\textcolor{keyword}{const}\ vector<string>\ \&vec)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00299\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{string}\ i\ :\ vec)\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{if}\ (!i.empty())\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{void}\ RAM::reset\_(vector<double>\ \&vec)\ \{}
+\DoxyCodeLine{00313\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vec.size();\ i++)\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ vec[i]\ =\ 0;}
+\DoxyCodeLine{00315\ \ \ \}}
+\DoxyCodeLine{00316\ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00323\ \textcolor{keywordtype}{void}\ RAM::reset\_(vector<string>\ \&vec)\ \{}
+\DoxyCodeLine{00324\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ vec.size();\ i++)\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ vec[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00326\ \ \ \}}
+\DoxyCodeLine{00327\ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00334\ \textcolor{keywordtype}{void}\ RAM::addCommandToHistory\_(\textcolor{keyword}{const}\ std::string\ \&command)\ \{}
+\DoxyCodeLine{00335\ \ \ commandHistory\_.push\_back(command);}
+\DoxyCodeLine{00336\ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00343\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAM_a164b676e5fe23cdd1165b4b36dfc3129}{RAM::getHalted}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ halted\_;\ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00350\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAM_aa50d910658d4b7debbec2177d83f25c9}{RAM::getExecutable}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ executable\_;\ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00357\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classRAM_a9faa5daf82d1cda019670b99097f2195}{RAM::getNumRegisters}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ numRegisters\_;\ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classRAM_a2f4e37e1302118308f7e806bdfe8c74f}{RAM::getNumMemory}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ numMemory\_;\ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00371\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classRAM_a5d5baa22f4a4beffd57f7d63644e34c4}{RAM::getNumStringMemory}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ numStringMemory\_;\ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00378\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a52bacd83ccd27c1979fd51a7a6d89f7c}{RAM::setNumRegisters}}(\textcolor{keywordtype}{unsigned}\ numRegisters)\ \{}
+\DoxyCodeLine{00379\ \ \ numRegisters\_\ =\ numRegisters;}
+\DoxyCodeLine{00380\ \ \ registers\_.resize(numRegisters\_);}
+\DoxyCodeLine{00381\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ registers\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ registers\_[i]\ =\ 0;}
+\DoxyCodeLine{00383\ \ \ \}}
+\DoxyCodeLine{00384\ \}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00391\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a267e3e85da00efc24007ec5549d6f505}{RAM::setNumMemory}}(\textcolor{keywordtype}{unsigned}\ numMemory)\ \{}
+\DoxyCodeLine{00392\ \ \ numMemory\_\ =\ numMemory;}
+\DoxyCodeLine{00393\ \ \ memory\_.resize(numMemory\_,\ 0);}
+\DoxyCodeLine{00394\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ memory\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ memory\_[i]\ =\ 0;}
+\DoxyCodeLine{00396\ \ \ \}}
+\DoxyCodeLine{00397\ \}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00404\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a503109fa4a21e4b61ae1336413095b00}{RAM::setNumStringMemory}}(\textcolor{keywordtype}{unsigned}\ numStringMemory)\ \{}
+\DoxyCodeLine{00405\ \ \ numStringMemory\_\ =\ numStringMemory;}
+\DoxyCodeLine{00406\ \ \ stringMemory\_.resize(numStringMemory\_,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00407\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ stringMemory\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ stringMemory\_[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00409\ \ \ \}}
+\DoxyCodeLine{00410\ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00417\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_ac3346faf89d89823c451cb4fb858e712}{RAM::addCommandToHistory}}(\textcolor{keyword}{const}\ std::string\ \&command)\ \{}
+\DoxyCodeLine{00418\ \ \ addCommandToHistory\_(command);}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00427\ ostream\ \&\mbox{\hyperlink{classRAM_a62a6f16dff0557b3e72ad9f54bb82774}{RAM::writeRegisters}}(ostream\ \&os)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00428\ \ \ \textcolor{keywordflow}{if}\ (allZero\_(registers\_))\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}Registers\ are\ all\ zeros"{}}\ <<\ endl;}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00431\ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ registers\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{if}\ (registers\_[i]\ <\ -\/1e-\/6\ ||\ registers\_[i]\ >\ 1e-\/6)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}Registers["{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}]\(\backslash\)t\ =\ "{}}\ <<\ registers\_[i]\ <<\ endl;}
+\DoxyCodeLine{00435\ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00438\ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00444\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_ab6d5b5559d29fbd0ba0bdf73809c9230}{RAM::printRegisters}}()\ \{}
+\DoxyCodeLine{00445\ \ \ \mbox{\hyperlink{classRAM_a62a6f16dff0557b3e72ad9f54bb82774}{writeRegisters}}();}
+\DoxyCodeLine{00446\ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Show\ registers\ state"{}});}
+\DoxyCodeLine{00447\ \}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00455\ ostream\ \&\mbox{\hyperlink{classRAM_a1b9daded3d7188dc53dc32c46d350a24}{RAM::writeMemory}}(ostream\ \&os)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00456\ \ \ \textcolor{keywordflow}{if}\ (allZero\_(memory\_))\ \{}
+\DoxyCodeLine{00457\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}Memory\ is\ all\ zeros"{}}\ <<\ endl;}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00459\ \ \ \}}
+\DoxyCodeLine{00460\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ memory\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_[i]\ <\ -\/1e-\/6\ ||\ memory\_[i]\ >\ 1e-\/6)\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}Memory["{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}]\(\backslash\)t\ =\ "{}}\ <<\ memory\_[i]\ <<\ endl;}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00466\ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00472\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a844355a787953374a05883bbfaa6397e}{RAM::printMemory}}()\ \{}
+\DoxyCodeLine{00473\ \ \ \mbox{\hyperlink{classRAM_a1b9daded3d7188dc53dc32c46d350a24}{writeMemory}}();}
+\DoxyCodeLine{00474\ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Show\ memory\ state"{}});}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00483\ ostream\ \&\mbox{\hyperlink{classRAM_a2190a513434a5af24192fe7a4a2ec649}{RAM::writeStringMemory}}(ostream\ \&os)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00484\ \ \ \textcolor{keywordflow}{if}\ (allZero\_(stringMemory\_))\ \{}
+\DoxyCodeLine{00485\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}String\ memory\ is\ empty"{}}\ <<\ endl;}
+\DoxyCodeLine{00486\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00487\ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ stringMemory\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keywordflow}{if}\ (!stringMemory\_[i].empty())\ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}StringMemory["{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}]\(\backslash\)t\ =\ \(\backslash\)"{}"{}}\ <<\ stringMemory\_[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ <<\ endl;}
+\DoxyCodeLine{00492\ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00495\ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00501\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_a150603787e02cd71204416236c2e035a}{RAM::printStringMemory}}()\ \{}
+\DoxyCodeLine{00502\ \ \ \mbox{\hyperlink{classRAM_a2190a513434a5af24192fe7a4a2ec649}{writeStringMemory}}();}
+\DoxyCodeLine{00503\ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Show\ string\ memory\ state"{}});}
+\DoxyCodeLine{00504\ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00512\ ostream\ \&\mbox{\hyperlink{classRAM_ab3ce2b357b448e3c40e64b502ed9b5bc}{RAM::writeMachine}}(ostream\ \&os)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00513\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Number\ of\ registers:\ "{}}\ <<\ numRegisters\_\ <<\ endl;}
+\DoxyCodeLine{00514\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Registers:\ "{}}\ <<\ endl;}
+\DoxyCodeLine{00515\ \ \ \mbox{\hyperlink{classRAM_a62a6f16dff0557b3e72ad9f54bb82774}{writeRegisters}}(os);}
+\DoxyCodeLine{00516\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Number\ of\ memory\ cells:\ "{}}\ <<\ numMemory\_\ <<\ endl;}
+\DoxyCodeLine{00517\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Memory:\ "{}}\ <<\ endl;}
+\DoxyCodeLine{00518\ \ \ \mbox{\hyperlink{classRAM_a1b9daded3d7188dc53dc32c46d350a24}{writeMemory}}(os);}
+\DoxyCodeLine{00519\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Number\ of\ string\ memory\ cells:\ "{}}\ <<\ endl;}
+\DoxyCodeLine{00520\ \ \ os\ <<\ \textcolor{stringliteral}{"{}String\ Memory:\ "{}}\ <<\ numStringMemory\_\ <<\ endl;}
+\DoxyCodeLine{00521\ \ \ \mbox{\hyperlink{classRAM_a2190a513434a5af24192fe7a4a2ec649}{writeStringMemory}}(os);}
+\DoxyCodeLine{00522\ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00523\ \}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00529\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_acd29b9547e068517952f6cb09020c600}{RAM::printMachine}}()\ \{}
+\DoxyCodeLine{00530\ \ \ \mbox{\hyperlink{classRAM_ab3ce2b357b448e3c40e64b502ed9b5bc}{writeMachine}}();}
+\DoxyCodeLine{00531\ \ \ commandHistory\_.push\_back(\textcolor{stringliteral}{"{}Show\ machine\ state"{}});}
+\DoxyCodeLine{00532\ \}}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00540\ ostream\ \&\mbox{\hyperlink{classRAM_a0c8f32f5c21c7e171b55eb21aec0d75a}{RAM::writeCommandHistory}}(ostream\ \&os)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00541\ \ \ \textcolor{keywordflow}{if}\ (commandHistory\_.empty())\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}No\ commands\ have\ been\ executed\ yet."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00544\ \ \ \}}
+\DoxyCodeLine{00545\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commandHistory\_.size();\ ++i)\ \{}
+\DoxyCodeLine{00546\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}]\ "{}}\ <<\ commandHistory\_[i]\ <<\ endl;}
+\DoxyCodeLine{00547\ \ \ \}}
+\DoxyCodeLine{00548\ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00549\ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00555\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAM_aa96190091dad85e89a130e20883f1bcc}{RAM::printCommandHistory}}()\textcolor{keyword}{\ const\ }\{\ \mbox{\hyperlink{classRAM_a0c8f32f5c21c7e171b55eb21aec0d75a}{writeCommandHistory}}();\ \}}
+
+\end{DoxyCode}

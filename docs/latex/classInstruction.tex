@@ -1,0 +1,40 @@
+\doxysection{Instruction Class Reference}
+\hypertarget{classInstruction}{}\label{classInstruction}\index{Instruction@{Instruction}}
+
+
+Abstract class to represent an instruction. It contains a pure virtual method to execute the instruction.  
+
+
+
+
+{\ttfamily \#include $<$instruction.\+h$>$}
+
+Inheritance diagram for Instruction\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classInstruction}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classInstruction_a3d402035f907593a3445291dc0ed9999}\label{classInstruction_a3d402035f907593a3445291dc0ed9999} 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\item 
+\Hypertarget{classInstruction_a7b6e90064a1351c9f9004077fbd07089}\label{classInstruction_a7b6e90064a1351c9f9004077fbd07089} 
+virtual string {\bfseries get\+Name} () const =0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classInstruction_aa4a0b7a7054d17ec01c37488721d1476}\label{classInstruction_aa4a0b7a7054d17ec01c37488721d1476} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&os, const \mbox{\hyperlink{classInstruction}{Instruction}} \&instruction)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class to represent an instruction. It contains a pure virtual method to execute the instruction. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+instruction.\+h\end{DoxyCompactItemize}

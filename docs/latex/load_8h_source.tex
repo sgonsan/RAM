@@ -1,0 +1,96 @@
+\doxysection{load.\+h}
+\hypertarget{load_8h_source}{}\label{load_8h_source}\index{Instructions/load.h@{Instructions/load.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LOAD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LOAD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../instruction.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLoad}{Load}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classInstruction}{Instruction}}\ \{}
+\DoxyCodeLine{00011\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{classLoad}{Load}}()\ \{\}}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{classLoad}{Load}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&line)\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Parse\ the\ line}}
+\DoxyCodeLine{00015\ \ \ \ \ istringstream\ iss(line);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00017\ \ \ \ \ iss\ >>\ name;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (name\ ==\ \textcolor{stringliteral}{"{}//"{}})\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ operand;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{while}\ (iss\ >>\ operand)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operand\ ==\ \textcolor{stringliteral}{"{}//"{}})\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isdigit(operand[0]))\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ operands\_.push\_back(\mbox{\hyperlink{classOperand}{Operand}}(operand));}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operand[0]\ !=\ \textcolor{charliteral}{'='}\ \&\&\ operand[0]\ !=\ \textcolor{charliteral}{'*'})\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ operands\_.push\_back(\mbox{\hyperlink{classOperand}{Operand}}(operand,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ operands\_.push\_back(\mbox{\hyperlink{classOperand}{Operand}}(operand));}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{void}\ execute(vector<double>\ \&memory,\ vector<string>\ \&stringMemory,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector<double>\ \&registers,\ \textcolor{keywordtype}{unsigned}\ \&pc,\ \textcolor{keywordtype}{bool}\ \&halted,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ map<std::string,\ pair<unsigned,\ bool>>\ \&labels\_,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ostream\ \&out)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_.size()\ !=\ 2)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}load\ instruction\ must\ have\ 2\ operands"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{double}\ operand\_1\{0\};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ values\ of\ the\ operand\ 1}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_[1].getTag()\ !=\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (labels\_.find(operands\_[1].getTag())\ ==\ labels\_.end())\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}label\ "{}}\ +\ operands\_[1].getTag()\ +\ \textcolor{stringliteral}{"{}\ not\ found"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ operand\_1\ =\ memory[labels\_.at(operands\_[1].getTag()).first];}
+\DoxyCodeLine{00054\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_[1].getAddressingMode()\ ==\ 2)\ \{\ \ \textcolor{comment}{//\ Direct\ addressing}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ operand\_1\ =\ memory[operands\_[1].getValue()];}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operands\_[1].getAddressingMode()\ ==}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1)\ \{\ \ \textcolor{comment}{//\ Indirect\ addressing}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ operand\_1\ =\ memory[memory[operands\_[1].getValue()]];}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \textcolor{comment}{//\ Immediate\ addressing}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ operand\_1\ =\ operands\_[1].getValue();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ values\ of\ the\ operand\ 2}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_[0].getAddressingMode()\ ==\ 2)\ \{\ \ \textcolor{comment}{//\ Direct\ addressing}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_[0].getValue()\ >=\ registers.size()\ ||}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ operands\_[0].getValue()\ <\ 0)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}register\ "{}}\ +\ to\_string(\textcolor{keywordtype}{int}(operands\_[0].getValue()))\ +\ \textcolor{stringliteral}{"{}\ not\ found"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ registers[operands\_[0].getValue()]\ =\ operand\_1;}
+\DoxyCodeLine{00073\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (operands\_[0].getAddressingMode()\ ==\ 1)\ \{\ \ \textcolor{comment}{//\ Indirect\ addressing}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_[0].getValue()\ >=\ registers.size()\ ||}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ operands\_[0].getValue()\ <\ 0\ ||}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ registers[operands\_[0].getValue()]\ >=\ registers.size()\ ||}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ registers[operands\_[0].getValue()]\ <\ 0)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}register\ "{}}\ +\ to\_string(\textcolor{keywordtype}{int}(operands\_[0].getValue()))\ +\ \textcolor{stringliteral}{"{}\ not\ found"{}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ registers[registers[operands\_[0].getValue()]]\ =\ operand\_1;}
+\DoxyCodeLine{00082\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \textcolor{comment}{//\ Immediate\ addressing}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}load\ instruction\ cannot\ have\ immediate\ addressing\ mode"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{string}\ getName()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}load"{}};\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ vector<Operand>\ operands\_;}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ Load\_H}}
+
+\end{DoxyCode}

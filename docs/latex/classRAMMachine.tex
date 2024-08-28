@@ -1,0 +1,253 @@
+\doxysection{RAMMachine Class Reference}
+\hypertarget{classRAMMachine}{}\label{classRAMMachine}\index{RAMMachine@{RAMMachine}}
+
+
+Class to represent a RAM machine. It contains a 1024 cell memory, a 32 cell register bank and a program counter. The machine can load a program from a file, execute it and print the memory state.~\newline
+~\newline
+The machine has the following instructions\+: ~\newline
+.  
+
+
+
+
+{\ttfamily \#include $<$RAMMachine.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRAMMachine_a2160930584406969a76422829b72d306}\label{classRAMMachine_a2160930584406969a76422829b72d306} 
+{\bfseries RAMMachine} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classRAMMachine_a2160930584406969a76422829b72d306}{RAMMachine\+::\+RAMMachine} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRAMMachine_a988591aba7bbf27dd1df95a61186d6b3}{load\+Program}} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em \doxylink{classLoad}{Load} a program from a file. \end{DoxyCompactList}\item 
+\Hypertarget{classRAMMachine_a153bfe9af4354dd267327f8e0a00525e}\label{classRAMMachine_a153bfe9af4354dd267327f8e0a00525e} 
+void {\bfseries execute\+Program} ()
+\begin{DoxyCompactList}\small\item\em Execute the program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRAMMachine_ae9ded4f10d32860558514e63862d29db}{create\+Instruction}} (const string \&line)
+\begin{DoxyCompactList}\small\item\em Create an instruction from a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRAMMachine_a3ba595867e8bc37b7ecdd8b249839c50}{create\+Data}} (const string \&line, unsigned \&memory\+\_\+ptr, unsigned \&string\+Memory\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Create a data from a string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRAMMachine_a0ab367e93b3afcea30b85e645ff6121f}{all\+Zero}} (const vector$<$ double $>$ \&vec) const
+\begin{DoxyCompactList}\small\item\em Check if the memory is all zeros. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRAMMachine_a513843e34a373576d672242848b88aae}{all\+Zero}} (const vector$<$ string $>$ \&vec) const
+\begin{DoxyCompactList}\small\item\em Check if the memory is all zeros. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRAMMachine_adb18531e7768b632680fb886315d42f6}{get\+Halted}} () const
+\begin{DoxyCompactList}\small\item\em Get the halted flag. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRAMMachine_a10517b22728c12fc03bbdd863797b413}{get\+Executable}} () const
+\begin{DoxyCompactList}\small\item\em Get the executable flag. \end{DoxyCompactList}\item 
+ostream \& \mbox{\hyperlink{classRAMMachine_a3bb4ce159a17a4fc6f829095c20d290f}{write\+Registers}} (ostream \&os=cout) const
+\begin{DoxyCompactList}\small\item\em \doxylink{classWrite}{Write} the registers to an output stream. \end{DoxyCompactList}\item 
+\Hypertarget{classRAMMachine_a8de86c3acb1ab3febccc00a7f4f72592}\label{classRAMMachine_a8de86c3acb1ab3febccc00a7f4f72592} 
+void {\bfseries print\+Registers} () const
+\begin{DoxyCompactList}\small\item\em Print the registers using the write\+Registers method. \end{DoxyCompactList}\item 
+ostream \& \mbox{\hyperlink{classRAMMachine_a9609d448edbd48e651a17c6b942175a7}{write\+Memory}} (ostream \&os=cout) const
+\begin{DoxyCompactList}\small\item\em \doxylink{classWrite}{Write} the memory to an output stream. \end{DoxyCompactList}\item 
+\Hypertarget{classRAMMachine_ae0b162e0548f8e2d1ae89d7ae60feafe}\label{classRAMMachine_ae0b162e0548f8e2d1ae89d7ae60feafe} 
+void {\bfseries print\+Memory} () const
+\begin{DoxyCompactList}\small\item\em Print the memory using the write\+Memory method. \end{DoxyCompactList}\item 
+ostream \& \mbox{\hyperlink{classRAMMachine_a5ce064091aa16e03d8b95583f8f783d8}{write\+String\+Memory}} (ostream \&os=cout) const
+\begin{DoxyCompactList}\small\item\em \doxylink{classWrite}{Write} the string memory to an output stream. \end{DoxyCompactList}\item 
+\Hypertarget{classRAMMachine_adaeb90c2cd987d7367ad313b800d2279}\label{classRAMMachine_adaeb90c2cd987d7367ad313b800d2279} 
+void {\bfseries print\+String\+Memory} () const
+\begin{DoxyCompactList}\small\item\em Print the string memory using the write\+String\+Memory method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to represent a RAM machine. It contains a 1024 cell memory, a 32 cell register bank and a program counter. The machine can load a program from a file, execute it and print the memory state.~\newline
+~\newline
+The machine has the following instructions\+: ~\newline
+. 
+
+
+\begin{DoxyItemize}
+\item \doxylink{classHalt}{Halt}\+: Stop the execution of the program ~\newline
+
+\item \doxylink{classAdd}{Add}\+: Sum two registers and store the result in a register ~\newline
+
+\item \doxylink{classSub}{Sub}\+: Subtract two registers and store the result in a register ~\newline
+
+\item \doxylink{classMul}{Mul}\+: Multiply two registers and store the result in a register ~\newline
+
+\item \doxylink{classDiv}{Div}\+: Divide two registers and store the result in a register ~\newline
+
+\item \doxylink{classLoad}{Load}\+: Put a value from memory to a register ~\newline
+
+\item \doxylink{classStore}{Store}\+: Put a value from a register to memory ~\newline
+
+\item \doxylink{classRead}{Read}\+: Put a value from the input to a register ~\newline
+
+\item \doxylink{classWrite}{Write}\+: Put a value from a register to the output ~\newline
+
+\item \doxylink{classJump}{Jump}\+: Make a jump to a label ~\newline
+
+\item \doxylink{classJzero}{Jzero}\+: Make a jump if the register is zero ~\newline
+
+\item \doxylink{classJgtz}{Jgtz}\+: Make a jump if the register is greater than zero ~\newline
+
+\item \doxylink{classJltz}{Jltz}\+: Make a jump if the register is less than zero ~\newline
+~\newline
+The machine can also check if the memory is all zeros and print the memory state. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRAMMachine_a0ab367e93b3afcea30b85e645ff6121f}\label{classRAMMachine_a0ab367e93b3afcea30b85e645ff6121f} 
+\index{RAMMachine@{RAMMachine}!allZero@{allZero}}
+\index{allZero@{allZero}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{allZero()}{allZero()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool RAMMachine\+::all\+Zero (\begin{DoxyParamCaption}\item[{const vector$<$ double $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+
+
+Check if the memory is all zeros. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} If all memory cells are zero 
+
+{\ttfamily false} If at least one memory cell is not zero 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_a513843e34a373576d672242848b88aae}\label{classRAMMachine_a513843e34a373576d672242848b88aae} 
+\index{RAMMachine@{RAMMachine}!allZero@{allZero}}
+\index{allZero@{allZero}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{allZero()}{allZero()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool RAMMachine\+::all\+Zero (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+
+
+Check if the memory is all zeros. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} If all memory cells are zero 
+
+{\ttfamily false} If at least one memory cell is not zero 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_a3ba595867e8bc37b7ecdd8b249839c50}\label{classRAMMachine_a3ba595867e8bc37b7ecdd8b249839c50} 
+\index{RAMMachine@{RAMMachine}!createData@{createData}}
+\index{createData@{createData}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{createData()}{createData()}}
+{\footnotesize\ttfamily void RAMMachine\+::create\+Data (\begin{DoxyParamCaption}\item[{const string \&}]{line,  }\item[{unsigned \&}]{memory\+\_\+ptr,  }\item[{unsigned \&}]{string\+Memory\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Create a data from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & String with the data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRAMMachine_ae9ded4f10d32860558514e63862d29db}\label{classRAMMachine_ae9ded4f10d32860558514e63862d29db} 
+\index{RAMMachine@{RAMMachine}!createInstruction@{createInstruction}}
+\index{createInstruction@{createInstruction}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{createInstruction()}{createInstruction()}}
+{\footnotesize\ttfamily void RAMMachine\+::create\+Instruction (\begin{DoxyParamCaption}\item[{const string \&}]{line }\end{DoxyParamCaption})}
+
+
+
+Create an instruction from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & String with the instruction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRAMMachine_a10517b22728c12fc03bbdd863797b413}\label{classRAMMachine_a10517b22728c12fc03bbdd863797b413} 
+\index{RAMMachine@{RAMMachine}!getExecutable@{getExecutable}}
+\index{getExecutable@{getExecutable}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{getExecutable()}{getExecutable()}}
+{\footnotesize\ttfamily bool RAMMachine\+::get\+Executable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the executable flag. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} If the program is executable 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_adb18531e7768b632680fb886315d42f6}\label{classRAMMachine_adb18531e7768b632680fb886315d42f6} 
+\index{RAMMachine@{RAMMachine}!getHalted@{getHalted}}
+\index{getHalted@{getHalted}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{getHalted()}{getHalted()}}
+{\footnotesize\ttfamily bool RAMMachine\+::get\+Halted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the halted flag. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} If the machine is halted 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_a988591aba7bbf27dd1df95a61186d6b3}\label{classRAMMachine_a988591aba7bbf27dd1df95a61186d6b3} 
+\index{RAMMachine@{RAMMachine}!loadProgram@{loadProgram}}
+\index{loadProgram@{loadProgram}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{loadProgram()}{loadProgram()}}
+{\footnotesize\ttfamily void RAMMachine\+::load\+Program (\begin{DoxyParamCaption}\item[{const string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+\doxylink{classLoad}{Load} a program from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & String with the name of the file \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRAMMachine_a9609d448edbd48e651a17c6b942175a7}\label{classRAMMachine_a9609d448edbd48e651a17c6b942175a7} 
+\index{RAMMachine@{RAMMachine}!writeMemory@{writeMemory}}
+\index{writeMemory@{writeMemory}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{writeMemory()}{writeMemory()}}
+{\footnotesize\ttfamily ostream \& RAMMachine\+::write\+Memory (\begin{DoxyParamCaption}\item[{ostream \&}]{os = {\ttfamily cout} }\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{classWrite}{Write} the memory to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream Output stream 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_a3bb4ce159a17a4fc6f829095c20d290f}\label{classRAMMachine_a3bb4ce159a17a4fc6f829095c20d290f} 
+\index{RAMMachine@{RAMMachine}!writeRegisters@{writeRegisters}}
+\index{writeRegisters@{writeRegisters}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{writeRegisters()}{writeRegisters()}}
+{\footnotesize\ttfamily ostream \& RAMMachine\+::write\+Registers (\begin{DoxyParamCaption}\item[{ostream \&}]{os = {\ttfamily cout} }\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{classWrite}{Write} the registers to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream Output stream 
+\end{DoxyReturn}
+\Hypertarget{classRAMMachine_a5ce064091aa16e03d8b95583f8f783d8}\label{classRAMMachine_a5ce064091aa16e03d8b95583f8f783d8} 
+\index{RAMMachine@{RAMMachine}!writeStringMemory@{writeStringMemory}}
+\index{writeStringMemory@{writeStringMemory}!RAMMachine@{RAMMachine}}
+\doxysubsubsection{\texorpdfstring{writeStringMemory()}{writeStringMemory()}}
+{\footnotesize\ttfamily ostream \& RAMMachine\+::write\+String\+Memory (\begin{DoxyParamCaption}\item[{ostream \&}]{os = {\ttfamily cout} }\end{DoxyParamCaption}) const}
+
+
+
+\doxylink{classWrite}{Write} the string memory to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream Output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+RAMMachine.\+h\item 
+RAMMachine.\+cpp\end{DoxyCompactItemize}

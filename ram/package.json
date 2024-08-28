@@ -1,0 +1,25 @@
+{
+  "name": "ram",
+  "displayName": "RAM Programming Language",
+  "description": "Programming Language for a Random Access Machine",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "ram",
+      "aliases": ["RAM Programming Language", "ram"],
+      "extensions": [".ram"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "ram",
+      "scopeName": "source.ram",
+      "path": "./syntaxes/ram.tmLanguage.json"
+    }]
+  }
+}

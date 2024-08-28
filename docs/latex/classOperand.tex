@@ -1,0 +1,192 @@
+\doxysection{Operand Class Reference}
+\hypertarget{classOperand}{}\label{classOperand}\index{Operand@{Operand}}
+
+
+Class to represent an operand. It can be a tag, or value with an addressing mode. The addressing mode can be\+: 0 for immediate, 1 for direct and 2 for indirect.  
+
+
+
+
+{\ttfamily \#include $<$operand.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOperand_a15b10bfa7b65d18a7e9b45ea070ff2f3}\label{classOperand_a15b10bfa7b65d18a7e9b45ea070ff2f3} 
+{\bfseries Operand} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classOperand}{Operand} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOperand_af670a4ecac55eec6d61b79ecc8fa9efa}{Operand}} (const std\+::string \&operand, const bool \&is\+\_\+tag=false)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classOperand}{Operand} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOperand_a382b54bb370339684d431f278df3b524}{Operand}} (const int \&value, const int \&addressing\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classOperand}{Operand} object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classOperand_a66c1ba83581e2046c59232c53e0a29fb}{get\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Get the value of the operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperand_abb98af909f0fe722de695bdcc4ed3c58}{get\+Addressing\+Mode}} () const
+\begin{DoxyCompactList}\small\item\em Get the addressing mode of the operand. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classOperand_af45fcee84af1166352d51fc961adad51}{get\+Tag}} () const
+\begin{DoxyCompactList}\small\item\em Get the tag of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOperand_a1e9e20012a1b873ff8337f90f8112166}{set\+Value}} (const int \&value)
+\begin{DoxyCompactList}\small\item\em Set the value of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOperand_a94ad6e77997d3f4f8effadb6e587a422}{set\+Addressing\+Mode}} (const int \&addressing\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Set the addressing mode of the operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classOperand_a94eae1c08e2df5e63d701ce80b321dba}{set\+Tag}} (const std\+::string \&tag)
+\begin{DoxyCompactList}\small\item\em Set the tag of the operand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classOperand_acabba168f4bda706a6b846d106091311}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classOperand}{Operand}} \&operand)
+\begin{DoxyCompactList}\small\item\em Overload the \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator to print the operand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to represent an operand. It can be a tag, or value with an addressing mode. The addressing mode can be\+: 0 for immediate, 1 for direct and 2 for indirect. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOperand_af670a4ecac55eec6d61b79ecc8fa9efa}\label{classOperand_af670a4ecac55eec6d61b79ecc8fa9efa} 
+\index{Operand@{Operand}!Operand@{Operand}}
+\index{Operand@{Operand}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{Operand()}{Operand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Operand\+::\+Operand (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{operand,  }\item[{const bool \&}]{is\+\_\+tag = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classOperand}{Operand} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & String with the operand \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOperand_a382b54bb370339684d431f278df3b524}\label{classOperand_a382b54bb370339684d431f278df3b524} 
+\index{Operand@{Operand}!Operand@{Operand}}
+\index{Operand@{Operand}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{Operand()}{Operand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Operand\+::\+Operand (\begin{DoxyParamCaption}\item[{const int \&}]{value,  }\item[{const int \&}]{addressing\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classOperand}{Operand} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Integer with the value of the operand \\
+\hline
+{\em addressing\+\_\+mode} & Integer with the addressing mode of the operand \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOperand_abb98af909f0fe722de695bdcc4ed3c58}\label{classOperand_abb98af909f0fe722de695bdcc4ed3c58} 
+\index{Operand@{Operand}!getAddressingMode@{getAddressingMode}}
+\index{getAddressingMode@{getAddressingMode}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{getAddressingMode()}{getAddressingMode()}}
+{\footnotesize\ttfamily int Operand\+::get\+Addressing\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the addressing mode of the operand. 
+
+\begin{DoxyReturn}{Returns}
+int Addressing mode of the operand 
+\end{DoxyReturn}
+\Hypertarget{classOperand_af45fcee84af1166352d51fc961adad51}\label{classOperand_af45fcee84af1166352d51fc961adad51} 
+\index{Operand@{Operand}!getTag@{getTag}}
+\index{getTag@{getTag}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{getTag()}{getTag()}}
+{\footnotesize\ttfamily std\+::string Operand\+::get\+Tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the tag of the operand. 
+
+\begin{DoxyReturn}{Returns}
+string Tag of the operand 
+\end{DoxyReturn}
+\Hypertarget{classOperand_a66c1ba83581e2046c59232c53e0a29fb}\label{classOperand_a66c1ba83581e2046c59232c53e0a29fb} 
+\index{Operand@{Operand}!getValue@{getValue}}
+\index{getValue@{getValue}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily double Operand\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the value of the operand. 
+
+\begin{DoxyReturn}{Returns}
+int Value of the operand 
+\end{DoxyReturn}
+\Hypertarget{classOperand_a94ad6e77997d3f4f8effadb6e587a422}\label{classOperand_a94ad6e77997d3f4f8effadb6e587a422} 
+\index{Operand@{Operand}!setAddressingMode@{setAddressingMode}}
+\index{setAddressingMode@{setAddressingMode}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{setAddressingMode()}{setAddressingMode()}}
+{\footnotesize\ttfamily void Operand\+::set\+Addressing\+Mode (\begin{DoxyParamCaption}\item[{const int \&}]{addressing\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Set the addressing mode of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addressing\+\_\+mode} & Integer with the addressing mode of the operand \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOperand_a94eae1c08e2df5e63d701ce80b321dba}\label{classOperand_a94eae1c08e2df5e63d701ce80b321dba} 
+\index{Operand@{Operand}!setTag@{setTag}}
+\index{setTag@{setTag}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{setTag()}{setTag()}}
+{\footnotesize\ttfamily void Operand\+::set\+Tag (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{tag }\end{DoxyParamCaption})}
+
+
+
+Set the tag of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & String with the tag of the operand \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classOperand_a1e9e20012a1b873ff8337f90f8112166}\label{classOperand_a1e9e20012a1b873ff8337f90f8112166} 
+\index{Operand@{Operand}!setValue@{setValue}}
+\index{setValue@{setValue}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Operand\+::set\+Value (\begin{DoxyParamCaption}\item[{const int \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the value of the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Integer with the value of the operand \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classOperand_acabba168f4bda706a6b846d106091311}\label{classOperand_acabba168f4bda706a6b846d106091311} 
+\index{Operand@{Operand}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Operand@{Operand}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classOperand}{Operand}} \&}]{operand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Overload the \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator to print the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+{\em operand} & \doxylink{classOperand}{Operand} to print \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::ostream\& Output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+operand.\+h\item 
+operand.\+cpp\end{DoxyCompactItemize}

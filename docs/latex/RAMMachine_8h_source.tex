@@ -1,0 +1,74 @@
+\doxysection{RAMMachine.\+h}
+\hypertarget{RAMMachine_8h_source}{}\label{RAMMachine_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAMMACHINE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAMMACHINE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Instructions/instructions.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRAMMachine}{RAMMachine}}\ \{}
+\DoxyCodeLine{00036\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{classRAMMachine_a2160930584406969a76422829b72d306}{RAMMachine}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{comment}{//\ Methods}}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_a988591aba7bbf27dd1df95a61186d6b3}{loadProgram}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_a153bfe9af4354dd267327f8e0a00525e}{executeProgram}}();}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_ae9ded4f10d32860558514e63862d29db}{createInstruction}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ line);}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_a3ba595867e8bc37b7ecdd8b249839c50}{createData}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ line,\ \textcolor{keywordtype}{unsigned}\&\ memory\_ptr,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\&\ stringMemory\_ptr);}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAMMachine_a0ab367e93b3afcea30b85e645ff6121f}{allZero}}(\textcolor{keyword}{const}\ vector<double>\&\ vec)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAMMachine_a0ab367e93b3afcea30b85e645ff6121f}{allZero}}(\textcolor{keyword}{const}\ vector<string>\&\ vec)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAMMachine_adb18531e7768b632680fb886315d42f6}{getHalted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRAMMachine_a10517b22728c12fc03bbdd863797b413}{getExecutable}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ I/O\ methods}}
+\DoxyCodeLine{00054\ \ \ ostream\&\ \mbox{\hyperlink{classRAMMachine_a3bb4ce159a17a4fc6f829095c20d290f}{writeRegisters}}(ostream\&\ os\ =\ cout)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_a8de86c3acb1ab3febccc00a7f4f72592}{printRegisters}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ \ \ ostream\&\ \mbox{\hyperlink{classRAMMachine_a9609d448edbd48e651a17c6b942175a7}{writeMemory}}(ostream\&\ os\ =\ cout)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_ae0b162e0548f8e2d1ae89d7ae60feafe}{printMemory}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \ \ ostream\&\ \mbox{\hyperlink{classRAMMachine_a5ce064091aa16e03d8b95583f8f783d8}{writeStringMemory}}(ostream\&\ os\ =\ cout)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRAMMachine_adaeb90c2cd987d7367ad313b800d2279}{printStringMemory}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \textcolor{comment}{//\ Method\ to\ reset\ the\ machine}}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{void}\ reset\_();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ Vector\ of\ instructions}}
+\DoxyCodeLine{00066\ \ \ vector<Instruction*>\ program\_;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ Map\ of\ labels\ (label,\ (address,\ isString))}}
+\DoxyCodeLine{00069\ \ \ map<string,\ pair<unsigned,\ bool>>\ labels\_;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ Vector\ of\ registers}}
+\DoxyCodeLine{00072\ \ \ vector<double>\ registers\_;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ Vector\ of\ memory\ cells}}
+\DoxyCodeLine{00075\ \ \ vector<double>\ memory\_;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{comment}{//\ Vector\ of\ string\ memory\ cells}}
+\DoxyCodeLine{00078\ \ \ vector<string>\ stringMemory\_;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ Program\ counter}}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{unsigned}\ pc\_;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{comment}{//\ Flag\ to\ indicate\ if\ the\ machine\ is\ halted}}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{bool}\ halted\_;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{comment}{//\ Flag\ to\ indicate\ if\ the\ program\ is\ executable}}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{bool}\ executable\_;}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#include\ "{}RAMMachine.cpp"{}}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ RAMMACHINE\_H}}
+
+\end{DoxyCode}

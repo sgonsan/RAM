@@ -1,0 +1,100 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "RAM Programming Language",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#block-comments" },
+		{ "include": "#keywords" },
+		{ "include": "#datatypes" },
+		{ "include": "#strings" },
+		{ "include": "#numbers" },
+		{ "include": "#collon" },
+		{ "include": "#variables" },
+		{ "include": "#operators" }
+
+	],
+	"repository": {
+		"comments": {
+			"begin": "//",
+			"end": "$",
+			"name": "comment.line",
+			"patterns": [
+				{
+					"match": "//.*$",
+					"name": "comment.line"
+				}
+			]
+		},
+		"block-comments": {
+			"begin": "/\\*",
+			"end": "\\*/",
+			"name": "comment.block",
+			"patterns": [
+				{
+					"match": "/\\*.*\\*/",
+					"name": "comment.block"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(load|read|write|add|sub|mul|div|jzero|halt|ENDL)\\b",
+					"name": "keyword.control"
+				}
+			]
+		},
+		"datatypes": {
+			"patterns": [
+				{
+					"match": "\\s(\\.string|\\.int|\\.float|\\.double)\\s|^(\\.data|\\.code)",
+					"name": "storage.type"
+				}
+			]
+		},
+		"strings": {
+			"begin": "\"",
+			"end": "\"",
+			"name": "string.quoted.double",
+			"patterns": [
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"match": "\\b\\d+\\b",
+					"name": "constant.numeric"
+				}
+			]
+		},
+		"collon": {
+			"patterns": [
+				{
+					"match": "^\\s*\\w+\\s*:",
+					"name": "variable.other"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"match": "",
+					"name": "text"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"match": "\\+|-|\\*|/|\\[|\\]",
+					"name": "keyword.operator"
+				}
+			]
+		}
+	},
+	"scopeName": "source.ram"
+}

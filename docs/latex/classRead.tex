@@ -1,0 +1,54 @@
+\doxysection{Read Class Reference}
+\hypertarget{classRead}{}\label{classRead}\index{Read@{Read}}
+
+
+Class that represents the \doxylink{classRead}{Read} instruction. The instruction reads a value from the standard input and stores it in a register.  
+
+
+
+
+{\ttfamily \#include $<$read.\+h$>$}
+
+Inheritance diagram for Read\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRead}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRead_a72f2ff6ac566a728a1f5149ff6217d15}\label{classRead_a72f2ff6ac566a728a1f5149ff6217d15} 
+{\bfseries Read} (const string \&line)
+\item 
+\Hypertarget{classRead_ae6c388f4081acfbef25fb4362f172c2c}\label{classRead_ae6c388f4081acfbef25fb4362f172c2c} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classRead_a4183fee695e4cb21e4334141c599523a}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classRead}{Read} instruction. The instruction reads a value from the standard input and stores it in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRead_a4183fee695e4cb21e4334141c599523a}\label{classRead_a4183fee695e4cb21e4334141c599523a} 
+\index{Read@{Read}!getName@{getName}}
+\index{getName@{getName}!Read@{Read}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Read\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/read.\+h\end{DoxyCompactItemize}

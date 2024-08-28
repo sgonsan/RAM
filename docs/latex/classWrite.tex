@@ -1,0 +1,54 @@
+\doxysection{Write Class Reference}
+\hypertarget{classWrite}{}\label{classWrite}\index{Write@{Write}}
+
+
+Class that represents the \doxylink{classWrite}{Write} instruction. The instruction writes a value from a register to the output.  
+
+
+
+
+{\ttfamily \#include $<$write.\+h$>$}
+
+Inheritance diagram for Write\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classWrite}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classWrite_ad38185d17010db7cf90f3474670f6635}\label{classWrite_ad38185d17010db7cf90f3474670f6635} 
+{\bfseries Write} (const string \&line)
+\item 
+\Hypertarget{classWrite_a2b97a9e447621d8b0b20ae06014ecd43}\label{classWrite_a2b97a9e447621d8b0b20ae06014ecd43} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classWrite_a9895e3083cea6de2a27c613d2720fab9}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classWrite}{Write} instruction. The instruction writes a value from a register to the output. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classWrite_a9895e3083cea6de2a27c613d2720fab9}\label{classWrite_a9895e3083cea6de2a27c613d2720fab9} 
+\index{Write@{Write}!getName@{getName}}
+\index{getName@{getName}!Write@{Write}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Write\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/write.\+h\end{DoxyCompactItemize}

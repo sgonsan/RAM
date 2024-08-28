@@ -1,0 +1,54 @@
+\doxysection{Jzero Class Reference}
+\hypertarget{classJzero}{}\label{classJzero}\index{Jzero@{Jzero}}
+
+
+Class that represents the \doxylink{classJzero}{Jzero} instruction. The instruction jumps to a tag if the value of a register is zero.  
+
+
+
+
+{\ttfamily \#include $<$jzero.\+h$>$}
+
+Inheritance diagram for Jzero\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classJzero}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJzero_a62c754a3dfa5f4b0a15669d863989bd8}\label{classJzero_a62c754a3dfa5f4b0a15669d863989bd8} 
+{\bfseries Jzero} (const string \&line)
+\item 
+\Hypertarget{classJzero_a36ea73421532654c7204322a6008ae1b}\label{classJzero_a36ea73421532654c7204322a6008ae1b} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classJzero_a9749b22f2d54b1e40d36f21fab304b0b}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classJzero}{Jzero} instruction. The instruction jumps to a tag if the value of a register is zero. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJzero_a9749b22f2d54b1e40d36f21fab304b0b}\label{classJzero_a9749b22f2d54b1e40d36f21fab304b0b} 
+\index{Jzero@{Jzero}!getName@{getName}}
+\index{getName@{getName}!Jzero@{Jzero}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Jzero\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/jzero.\+h\end{DoxyCompactItemize}

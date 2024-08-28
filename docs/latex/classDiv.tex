@@ -1,0 +1,54 @@
+\doxysection{Div Class Reference}
+\hypertarget{classDiv}{}\label{classDiv}\index{Div@{Div}}
+
+
+Class that represents the \doxylink{classDiv}{Div} instruction. The instruction divides two operands and stores the result in a register.  
+
+
+
+
+{\ttfamily \#include $<$div.\+h$>$}
+
+Inheritance diagram for Div\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classDiv}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDiv_aa6ecbc5c406d892e4c06f4ea3e8e9c0f}\label{classDiv_aa6ecbc5c406d892e4c06f4ea3e8e9c0f} 
+{\bfseries Div} (const string \&line)
+\item 
+\Hypertarget{classDiv_a72c10c025fde0793ca7ae39f7dba50fc}\label{classDiv_a72c10c025fde0793ca7ae39f7dba50fc} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classDiv_a601ff60f9927e1a6b37cf61726a28ce7}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classDiv}{Div} instruction. The instruction divides two operands and stores the result in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDiv_a601ff60f9927e1a6b37cf61726a28ce7}\label{classDiv_a601ff60f9927e1a6b37cf61726a28ce7} 
+\index{Div@{Div}!getName@{getName}}
+\index{getName@{getName}!Div@{Div}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Div\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/div.\+h\end{DoxyCompactItemize}

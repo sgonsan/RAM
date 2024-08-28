@@ -1,0 +1,54 @@
+\doxysection{Add Class Reference}
+\hypertarget{classAdd}{}\label{classAdd}\index{Add@{Add}}
+
+
+Class that represents the \doxylink{classAdd}{Add} instruction. The instruction adds two operands and stores the result in a register.  
+
+
+
+
+{\ttfamily \#include $<$add.\+h$>$}
+
+Inheritance diagram for Add\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAdd_aa741a8ce234391b3f54819db73cce3fe}\label{classAdd_aa741a8ce234391b3f54819db73cce3fe} 
+{\bfseries Add} (const string \&line)
+\item 
+\Hypertarget{classAdd_acc926c89778466c94b99327037bdb06b}\label{classAdd_acc926c89778466c94b99327037bdb06b} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classAdd_a44bec1167d26f0da113141d1a52c2108}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classAdd}{Add} instruction. The instruction adds two operands and stores the result in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classAdd_a44bec1167d26f0da113141d1a52c2108}\label{classAdd_a44bec1167d26f0da113141d1a52c2108} 
+\index{Add@{Add}!getName@{getName}}
+\index{getName@{getName}!Add@{Add}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Add\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/add.\+h\end{DoxyCompactItemize}

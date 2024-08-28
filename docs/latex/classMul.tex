@@ -1,0 +1,54 @@
+\doxysection{Mul Class Reference}
+\hypertarget{classMul}{}\label{classMul}\index{Mul@{Mul}}
+
+
+Class that represents the \doxylink{classMul}{Mul} instruction. The instruction multiplies two operands and stores the result in a register.  
+
+
+
+
+{\ttfamily \#include $<$mul.\+h$>$}
+
+Inheritance diagram for Mul\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMul}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMul_ada7fce4564996da63084ee274be82768}\label{classMul_ada7fce4564996da63084ee274be82768} 
+{\bfseries Mul} (const string \&line)
+\item 
+\Hypertarget{classMul_a49e6330d40c8c2eeb4eefab2f81331eb}\label{classMul_a49e6330d40c8c2eeb4eefab2f81331eb} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classMul_adde03735fb2bf16216c5f7df89ca3efa}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classMul}{Mul} instruction. The instruction multiplies two operands and stores the result in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMul_adde03735fb2bf16216c5f7df89ca3efa}\label{classMul_adde03735fb2bf16216c5f7df89ca3efa} 
+\index{Mul@{Mul}!getName@{getName}}
+\index{getName@{getName}!Mul@{Mul}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Mul\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/mul.\+h\end{DoxyCompactItemize}

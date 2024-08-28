@@ -1,0 +1,39 @@
+\doxysection{operand.\+h}
+\hypertarget{operand_8h_source}{}\label{operand_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ OPERAND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ OPERAND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOperand}{Operand}}\ \{}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{classOperand_a15b10bfa7b65d18a7e9b45ea070ff2f3}{Operand}}();}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{classOperand_a15b10bfa7b65d18a7e9b45ea070ff2f3}{Operand}}(\textcolor{keyword}{const}\ std::string\ \&operand,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \&is\_tag\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{classOperand_a15b10bfa7b65d18a7e9b45ea070ff2f3}{Operand}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&addressing\_mode);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classOperand_a66c1ba83581e2046c59232c53e0a29fb}{getValue}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classOperand_abb98af909f0fe722de695bdcc4ed3c58}{getAddressingMode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ std::string\ \mbox{\hyperlink{classOperand_af45fcee84af1166352d51fc961adad51}{getTag}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOperand_a1e9e20012a1b873ff8337f90f8112166}{setValue}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&value);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOperand_a94ad6e77997d3f4f8effadb6e587a422}{setAddressingMode}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&addressing\_mode);}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOperand_a94eae1c08e2df5e63d701ce80b321dba}{setTag}}(\textcolor{keyword}{const}\ std::string\ \&tag);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{classOperand_acabba168f4bda706a6b846d106091311}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classOperand}{Operand}}\ \&operand);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ std::string\ tag\_;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{double}\ value\_;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{int}\ addressing\_mode\_;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}operand.cpp"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ OPERAND\_H}}
+
+\end{DoxyCode}

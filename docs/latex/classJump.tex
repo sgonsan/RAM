@@ -1,0 +1,54 @@
+\doxysection{Jump Class Reference}
+\hypertarget{classJump}{}\label{classJump}\index{Jump@{Jump}}
+
+
+Class that represents the \doxylink{classJump}{Jump} instruction. The instruction jumps to a tag.  
+
+
+
+
+{\ttfamily \#include $<$jump.\+h$>$}
+
+Inheritance diagram for Jump\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classJump}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJump_ac5de6707644beb71812aefc7b80f13e2}\label{classJump_ac5de6707644beb71812aefc7b80f13e2} 
+{\bfseries Jump} (const string \&line)
+\item 
+\Hypertarget{classJump_af634019478caf32bff21d52f2c64971d}\label{classJump_af634019478caf32bff21d52f2c64971d} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classJump_a323e901f7747757ca909beb9d9033085}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classJump}{Jump} instruction. The instruction jumps to a tag. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJump_a323e901f7747757ca909beb9d9033085}\label{classJump_a323e901f7747757ca909beb9d9033085} 
+\index{Jump@{Jump}!getName@{getName}}
+\index{getName@{getName}!Jump@{Jump}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Jump\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/jump.\+h\end{DoxyCompactItemize}

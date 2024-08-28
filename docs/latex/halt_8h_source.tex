@@ -1,0 +1,49 @@
+\doxysection{halt.\+h}
+\hypertarget{halt_8h_source}{}\label{halt_8h_source}\index{Instructions/halt.h@{Instructions/halt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HALT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HALT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../instruction.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classHalt}{Halt}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classInstruction}{Instruction}}\ \{}
+\DoxyCodeLine{00011\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{classHalt}{Halt}}()\ \{\}}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{classHalt}{Halt}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&line)\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{//\ Parse\ the\ line}}
+\DoxyCodeLine{00015\ \ \ \ \ istringstream\ iss(line);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00017\ \ \ \ \ iss\ >>\ name;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{if}\ (name\ ==\ \textcolor{stringliteral}{"{}//"{}})\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ operand;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{while}\ (iss\ >>\ operand)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (operand\ ==\ \textcolor{stringliteral}{"{}//"{}})\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ operands\_.push\_back(\mbox{\hyperlink{classOperand}{Operand}}(operand));}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ execute(vector<double>\ \&memory,\ vector<string>\ \&stringMemory,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector<double>\ \&registers,\ \textcolor{keywordtype}{unsigned}\ \&pc,\ \textcolor{keywordtype}{bool}\ \&halted,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ map<std::string,\ pair<unsigned,\ bool>>\ \&labels\_,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ostream\ \&out)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (operands\_.size()\ !=\ 0)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ invalid\_argument(\textcolor{stringliteral}{"{}halt\ instruction\ must\ have\ no\ operands"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ halted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{string}\ getName()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}halt"{}};\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ vector<Operand>\ operands\_;}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ HALT\_H}}
+
+\end{DoxyCode}

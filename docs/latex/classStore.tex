@@ -1,0 +1,54 @@
+\doxysection{Store Class Reference}
+\hypertarget{classStore}{}\label{classStore}\index{Store@{Store}}
+
+
+Class that represents the \doxylink{classStore}{Store} instruction. The instruction stores a value from a register in memory.  
+
+
+
+
+{\ttfamily \#include $<$store.\+h$>$}
+
+Inheritance diagram for Store\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classStore}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStore_a642f9dcf1842a7304198adf7c215bcc6}\label{classStore_a642f9dcf1842a7304198adf7c215bcc6} 
+{\bfseries Store} (const string \&line)
+\item 
+\Hypertarget{classStore_a697ac178aaefd0d9c537cc548d892bc2}\label{classStore_a697ac178aaefd0d9c537cc548d892bc2} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classStore_a791e058a0814f1d27b5d6db6542f832a}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classStore}{Store} instruction. The instruction stores a value from a register in memory. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStore_a791e058a0814f1d27b5d6db6542f832a}\label{classStore_a791e058a0814f1d27b5d6db6542f832a} 
+\index{Store@{Store}!getName@{getName}}
+\index{getName@{getName}!Store@{Store}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Store\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/store.\+h\end{DoxyCompactItemize}

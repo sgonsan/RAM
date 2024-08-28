@@ -1,0 +1,54 @@
+\doxysection{Sub Class Reference}
+\hypertarget{classSub}{}\label{classSub}\index{Sub@{Sub}}
+
+
+Class that represents the \doxylink{classSub}{Sub} instruction. The instruction subtracts the value of a register from another register and stores the result in a register.  
+
+
+
+
+{\ttfamily \#include $<$sub.\+h$>$}
+
+Inheritance diagram for Sub\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSub}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSub_a916f05f4f72fbced1881bec7596dd2db}\label{classSub_a916f05f4f72fbced1881bec7596dd2db} 
+{\bfseries Sub} (const string \&line)
+\item 
+\Hypertarget{classSub_aee0bda8a25ed0bf947553474bb96b63c}\label{classSub_aee0bda8a25ed0bf947553474bb96b63c} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classSub_a592bb7d3f0ced066e3433f5d78531802}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classSub}{Sub} instruction. The instruction subtracts the value of a register from another register and stores the result in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSub_a592bb7d3f0ced066e3433f5d78531802}\label{classSub_a592bb7d3f0ced066e3433f5d78531802} 
+\index{Sub@{Sub}!getName@{getName}}
+\index{getName@{getName}!Sub@{Sub}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Sub\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/sub.\+h\end{DoxyCompactItemize}

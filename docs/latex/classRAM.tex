@@ -1,0 +1,125 @@
+\doxysection{RAM Class Reference}
+\hypertarget{classRAM}{}\label{classRAM}\index{RAM@{RAM}}
+
+
+Class to represent a \doxylink{classRAM}{RAM}. It contains a 1024 cell memory, a 32 cell register bank and a program counter. The machine can load a program from a file, execute it and print the memory state.~\newline
+~\newline
+The machine has the following instructions\+: ~\newline
+.  
+
+
+
+
+{\ttfamily \#include $<$RAM.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classRAM_ab4cdb646943acb580a64912a55f86b4a}\label{classRAM_ab4cdb646943acb580a64912a55f86b4a} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{classRAM_ae6ed83904490e4dccbe7d58bda5d2978}\label{classRAM_ae6ed83904490e4dccbe7d58bda5d2978} 
+void {\bfseries load\+Program} (const string \&filename)
+\item 
+\Hypertarget{classRAM_a978fe9aeee6e803acd4a6f23b76781ca}\label{classRAM_a978fe9aeee6e803acd4a6f23b76781ca} 
+void {\bfseries execute\+Program} ()
+\item 
+\Hypertarget{classRAM_a164b676e5fe23cdd1165b4b36dfc3129}\label{classRAM_a164b676e5fe23cdd1165b4b36dfc3129} 
+bool {\bfseries get\+Halted} () const
+\item 
+\Hypertarget{classRAM_aa50d910658d4b7debbec2177d83f25c9}\label{classRAM_aa50d910658d4b7debbec2177d83f25c9} 
+bool {\bfseries get\+Executable} () const
+\item 
+\Hypertarget{classRAM_a9faa5daf82d1cda019670b99097f2195}\label{classRAM_a9faa5daf82d1cda019670b99097f2195} 
+unsigned {\bfseries get\+Num\+Registers} () const
+\item 
+\Hypertarget{classRAM_a2f4e37e1302118308f7e806bdfe8c74f}\label{classRAM_a2f4e37e1302118308f7e806bdfe8c74f} 
+unsigned {\bfseries get\+Num\+Memory} () const
+\item 
+\Hypertarget{classRAM_a5d5baa22f4a4beffd57f7d63644e34c4}\label{classRAM_a5d5baa22f4a4beffd57f7d63644e34c4} 
+unsigned {\bfseries get\+Num\+String\+Memory} () const
+\item 
+\Hypertarget{classRAM_a52bacd83ccd27c1979fd51a7a6d89f7c}\label{classRAM_a52bacd83ccd27c1979fd51a7a6d89f7c} 
+void {\bfseries set\+Num\+Registers} (unsigned num\+Registers)
+\item 
+\Hypertarget{classRAM_a267e3e85da00efc24007ec5549d6f505}\label{classRAM_a267e3e85da00efc24007ec5549d6f505} 
+void {\bfseries set\+Num\+Memory} (unsigned num\+Memory)
+\item 
+\Hypertarget{classRAM_a503109fa4a21e4b61ae1336413095b00}\label{classRAM_a503109fa4a21e4b61ae1336413095b00} 
+void {\bfseries set\+Num\+String\+Memory} (unsigned num\+String\+Memory)
+\item 
+\Hypertarget{classRAM_ac3346faf89d89823c451cb4fb858e712}\label{classRAM_ac3346faf89d89823c451cb4fb858e712} 
+void {\bfseries add\+Command\+To\+History} (const string \&command)
+\item 
+\Hypertarget{classRAM_a62a6f16dff0557b3e72ad9f54bb82774}\label{classRAM_a62a6f16dff0557b3e72ad9f54bb82774} 
+ostream \& {\bfseries write\+Registers} (ostream \&os=cout) const
+\item 
+\Hypertarget{classRAM_ab6d5b5559d29fbd0ba0bdf73809c9230}\label{classRAM_ab6d5b5559d29fbd0ba0bdf73809c9230} 
+void {\bfseries print\+Registers} ()
+\item 
+\Hypertarget{classRAM_a1b9daded3d7188dc53dc32c46d350a24}\label{classRAM_a1b9daded3d7188dc53dc32c46d350a24} 
+ostream \& {\bfseries write\+Memory} (ostream \&os=cout) const
+\item 
+\Hypertarget{classRAM_a844355a787953374a05883bbfaa6397e}\label{classRAM_a844355a787953374a05883bbfaa6397e} 
+void {\bfseries print\+Memory} ()
+\item 
+\Hypertarget{classRAM_a2190a513434a5af24192fe7a4a2ec649}\label{classRAM_a2190a513434a5af24192fe7a4a2ec649} 
+ostream \& {\bfseries write\+String\+Memory} (ostream \&os=cout) const
+\item 
+\Hypertarget{classRAM_a150603787e02cd71204416236c2e035a}\label{classRAM_a150603787e02cd71204416236c2e035a} 
+void {\bfseries print\+String\+Memory} ()
+\item 
+\Hypertarget{classRAM_ab3ce2b357b448e3c40e64b502ed9b5bc}\label{classRAM_ab3ce2b357b448e3c40e64b502ed9b5bc} 
+ostream \& {\bfseries write\+Machine} (ostream \&os=cout) const
+\item 
+\Hypertarget{classRAM_acd29b9547e068517952f6cb09020c600}\label{classRAM_acd29b9547e068517952f6cb09020c600} 
+void {\bfseries print\+Machine} ()
+\item 
+\Hypertarget{classRAM_a0c8f32f5c21c7e171b55eb21aec0d75a}\label{classRAM_a0c8f32f5c21c7e171b55eb21aec0d75a} 
+ostream \& {\bfseries write\+Command\+History} (ostream \&os=cout) const
+\item 
+\Hypertarget{classRAM_aa96190091dad85e89a130e20883f1bcc}\label{classRAM_aa96190091dad85e89a130e20883f1bcc} 
+void {\bfseries print\+Command\+History} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to represent a \doxylink{classRAM}{RAM}. It contains a 1024 cell memory, a 32 cell register bank and a program counter. The machine can load a program from a file, execute it and print the memory state.~\newline
+~\newline
+The machine has the following instructions\+: ~\newline
+. 
+
+
+\begin{DoxyItemize}
+\item \doxylink{classHalt}{Halt}\+: Stop the execution of the program ~\newline
+
+\item \doxylink{classAdd}{Add}\+: Sum two registers and store the result in a register ~\newline
+
+\item \doxylink{classSub}{Sub}\+: Subtract two registers and store the result in a register ~\newline
+
+\item \doxylink{classMul}{Mul}\+: Multiply two registers and store the result in a register ~\newline
+
+\item \doxylink{classDiv}{Div}\+: Divide two registers and store the result in a register ~\newline
+
+\item \doxylink{classLoad}{Load}\+: Put a value from memory to a register ~\newline
+
+\item \doxylink{classStore}{Store}\+: Put a value from a register to memory ~\newline
+
+\item \doxylink{classRead}{Read}\+: Put a value from the input to a register ~\newline
+
+\item \doxylink{classWrite}{Write}\+: Put a value from a register to the output ~\newline
+
+\item \doxylink{classJump}{Jump}\+: Make a jump to a label ~\newline
+
+\item \doxylink{classJzero}{Jzero}\+: Make a jump if the register is zero ~\newline
+
+\item \doxylink{classJgtz}{Jgtz}\+: Make a jump if the register is greater than zero ~\newline
+
+\item \doxylink{classJltz}{Jltz}\+: Make a jump if the register is less than zero ~\newline
+~\newline
+The machine can also check if the memory is all zeros and print the memory state. 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+RAM.\+h\end{DoxyCompactItemize}

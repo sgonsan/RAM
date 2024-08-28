@@ -1,0 +1,54 @@
+\doxysection{Jgtz Class Reference}
+\hypertarget{classJgtz}{}\label{classJgtz}\index{Jgtz@{Jgtz}}
+
+
+Class that represents the \doxylink{classJgtz}{Jgtz} instruction. The instruction jumps to a tag if the value in a register is greater than zero.  
+
+
+
+
+{\ttfamily \#include $<$jgtz.\+h$>$}
+
+Inheritance diagram for Jgtz\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classJgtz}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJgtz_ab1c6c135c4638379fe876a92908b9da4}\label{classJgtz_ab1c6c135c4638379fe876a92908b9da4} 
+{\bfseries Jgtz} (const string \&line)
+\item 
+\Hypertarget{classJgtz_a27ec686adc63d9ca885139941caa1ac7}\label{classJgtz_a27ec686adc63d9ca885139941caa1ac7} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classJgtz_a80f3966a680bc816231509336dd6d2f2}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classJgtz}{Jgtz} instruction. The instruction jumps to a tag if the value in a register is greater than zero. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classJgtz_a80f3966a680bc816231509336dd6d2f2}\label{classJgtz_a80f3966a680bc816231509336dd6d2f2} 
+\index{Jgtz@{Jgtz}!getName@{getName}}
+\index{getName@{getName}!Jgtz@{Jgtz}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Jgtz\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/jgtz.\+h\end{DoxyCompactItemize}

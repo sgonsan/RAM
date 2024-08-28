@@ -1,0 +1,54 @@
+\doxysection{Load Class Reference}
+\hypertarget{classLoad}{}\label{classLoad}\index{Load@{Load}}
+
+
+Class that represents the \doxylink{classLoad}{Load} instruction. The instruction loads a value from memory and stores it in a register.  
+
+
+
+
+{\ttfamily \#include $<$load.\+h$>$}
+
+Inheritance diagram for Load\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLoad}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classLoad_a1a1b88d8d9e0aac2676f0ebe8422fe8f}\label{classLoad_a1a1b88d8d9e0aac2676f0ebe8422fe8f} 
+{\bfseries Load} (const string \&line)
+\item 
+\Hypertarget{classLoad_a60ee412d1c5a2c34daa96778b62f43bb}\label{classLoad_a60ee412d1c5a2c34daa96778b62f43bb} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classLoad_a2456042b8bab140ac2b56abbf7f7de22}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classLoad}{Load} instruction. The instruction loads a value from memory and stores it in a register. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLoad_a2456042b8bab140ac2b56abbf7f7de22}\label{classLoad_a2456042b8bab140ac2b56abbf7f7de22} 
+\index{Load@{Load}!getName@{getName}}
+\index{getName@{getName}!Load@{Load}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Load\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/load.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\doxysection{Halt Class Reference}
+\hypertarget{classHalt}{}\label{classHalt}\index{Halt@{Halt}}
+
+
+Class that represents the \doxylink{classHalt}{Halt} instruction. The instruction stops the execution of the program.  
+
+
+
+
+{\ttfamily \#include $<$halt.\+h$>$}
+
+Inheritance diagram for Halt\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classHalt}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classHalt_a71c282730632df15f5523532405eb6d5}\label{classHalt_a71c282730632df15f5523532405eb6d5} 
+{\bfseries Halt} (const string \&line)
+\item 
+\Hypertarget{classHalt_ae4b687a6e45ff95b0234f0e94168f1cf}\label{classHalt_ae4b687a6e45ff95b0234f0e94168f1cf} 
+void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ std\+::string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const override
+\item 
+string \mbox{\hyperlink{classHalt_ad69697dc59eedce88da0e2ab091fcfb2}{get\+Name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classInstruction}{Instruction}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries execute} (vector$<$ double $>$ \&memory, vector$<$ string $>$ \&string\+Memory, vector$<$ double $>$ \&registers, unsigned \&pc, bool \&halted, const map$<$ string, pair$<$ unsigned, bool $>$ $>$ \&labels\+\_\+, ostream \&out) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents the \doxylink{classHalt}{Halt} instruction. The instruction stops the execution of the program. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHalt_ad69697dc59eedce88da0e2ab091fcfb2}\label{classHalt_ad69697dc59eedce88da0e2ab091fcfb2} 
+\index{Halt@{Halt}!getName@{getName}}
+\index{getName@{getName}!Halt@{Halt}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Halt\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classInstruction}{Instruction}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Instructions/halt.\+h\end{DoxyCompactItemize}
