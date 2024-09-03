@@ -1,13 +1,12 @@
 #!/bin/bash
 
 clear
-cd code
 # Load variables from config
 source "./config"
 
 echo -e "${COLOR_YELLOW}Generating documentation...${COLOR_RESET}"
 
-doxygen ../Doxyfile
+doxygen Doxyfile
 sleep 0.5 # Pause for 1 second to simulate an animation
 
 echo -e "${COLOR_GREEN}Documentation generated.${COLOR_RESET}"
@@ -31,5 +30,3 @@ else
     echo -e "${COLOR_GREEN}Successful execution.${COLOR_RESET}"
   fi
 fi
-
-cd ..

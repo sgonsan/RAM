@@ -17,8 +17,6 @@ The program uses the following instructions:
 The program uses the following data types:
 - .string
 - .int
-- .float
-- .double
 
 This program is written by Sergio Gonzalez
 */
@@ -51,7 +49,7 @@ load 3 operator_div
 
 write get_input
 read 8              // R[8] = input
-// jzero 8 end      // if M[4] == 0 goto end
+// jzero 8 end      // if input is 0, jump to end
 
 add 4 0 8           // R[4] = R[0] + R[8]
 sub 5 1 8           // R[5] = R[1] - R[8]

@@ -10,7 +10,10 @@ COLOR_YELLOW='\033[1;33m'
 PROGRAM_NAME=RAM
 
 # Source file list
-SOURCES=./main.cpp
+SOURCES=code/main.cpp
+
+# Target directory
+TARGET_DIR=build
 
 # Execute command
-EXECUTION="./$PROGRAM_NAME"
+EXECUTION=$TARGET_DIR/$PROGRAM_NAME

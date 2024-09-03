@@ -1,3 +1,5 @@
+#include "regex"
+
 /**
  * @brief Construct a new RAM::RAM object
  *
@@ -56,6 +58,9 @@ void RAM::loadProgram(const string &filename) {
         if (line.empty()) {
           continue;
         }
+
+        // Remove leading and trailing whitespaces
+        line = regex_replace(line, regex("^ +| +$|( ) +"), "$1");
 
         if (line.find("/*") != string::npos) {
           comment = true;

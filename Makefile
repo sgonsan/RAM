@@ -2,7 +2,7 @@
 include config
 
 # Final program name
-TARGET = $(PROGRAM_NAME)
+TARGET = $(TARGET_DIR)/$(PROGRAM_NAME)
 
 # Compiler
 CC = g++
